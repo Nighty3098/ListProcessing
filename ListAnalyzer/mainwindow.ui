@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset theme="QIcon::ThemeIcon::GoHome"/>
+  </property>
   <property name="styleSheet">
    <string notr="true">background-color: #0d1117; color: #ffffff; border: none; border-radius: 15px;</string>
   </property>
@@ -20,7 +23,7 @@
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
+      <item row="0" column="1">
        <widget class="QTabWidget" name="tabWidget">
         <property name="autoFillBackground">
          <bool>false</bool>
@@ -69,44 +72,59 @@ QTabBar::tab:selected, QTabBar::tab:hover {
           <item>
            <layout class="QGridLayout" name="gridLayout_2">
             <item row="1" column="1">
-             <widget class="QPushButton" name="openFileBtn">
-              <property name="minimumSize">
-               <size>
-                <width>100</width>
-                <height>100</height>
-               </size>
-              </property>
-              <property name="toolTip">
-               <string>Open file</string>
-              </property>
-              <property name="layoutDirection">
-               <enum>Qt::LayoutDirection::LeftToRight</enum>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: transparent; color: #fff; border: none; border-radius: 10px;</string>
+             <widget class="QLabel" name="label">
+              <property name="font">
+               <font>
+                <pointsize>45</pointsize>
+                <italic>true</italic>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="resources/resources.qrc">
-                <normaloff>:/folder.svg</normaloff>:/folder.svg</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>70</width>
-                <height>70</height>
-               </size>
-              </property>
-              <property name="shortcut">
-               <string>Ctrl+O</string>
-              </property>
-              <property name="flat">
-               <bool>true</bool>
+               <string>ListProcessing</string>
               </property>
              </widget>
             </item>
-            <item row="2" column="0" colspan="3">
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="1">
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="1">
+             <spacer name="verticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="3" column="0" colspan="3">
              <widget class="QLabel" name="filePathLbl">
               <property name="text">
                <string/>
@@ -129,44 +147,21 @@ QTabBar::tab:selected, QTabBar::tab:hover {
               </property>
              </spacer>
             </item>
-            <item row="0" column="1">
-             <spacer name="verticalSpacer">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
+            <item row="2" column="1">
+             <widget class="QPushButton" name="pushButton">
+              <property name="minimumSize">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>0</width>
+                <height>25</height>
                </size>
               </property>
-             </spacer>
-            </item>
-            <item row="1" column="2">
-             <spacer name="horizontalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
+              <property name="styleSheet">
+               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
               </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
+              <property name="text">
+               <string>Открыть файл</string>
               </property>
-             </spacer>
-            </item>
-            <item row="3" column="1">
-             <spacer name="verticalSpacer_2">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
+             </widget>
             </item>
            </layout>
           </item>
@@ -180,29 +175,20 @@ QTabBar::tab:selected, QTabBar::tab:hover {
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="1" column="2">
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="3" column="3">
              <widget class="QComboBox" name="comboBox">
               <property name="minimumSize">
                <size>
-                <width>0</width>
+                <width>200</width>
                 <height>25</height>
                </size>
               </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
               <property name="styleSheet">
                <string notr="true">QComboBox {
-	background-color: #22282f;
+	selection-background-color: #5e5e5e;
+	background-color: #22282f ;	
 	border-radius: 7px;
 }
 
@@ -215,6 +201,7 @@ QComboBox::drop-down {
     border-left-style: solid;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
+	selection-background-color: #5e5e5e;
 }
 
 QComboBox::down-arrow:on {
@@ -224,9 +211,22 @@ QComboBox::down-arrow:on {
 
 QComboBox QAbstractItemView {
   border: 1px solid grey;
-  background: #22282f ;
-  selection-background-color: blue;
+  background-color: #22282f ;
+  selection-background-color: #5e5e5e;
+}
+
+QComboBox QListView {
+	background-color: lightgreen;
 }</string>
+              </property>
+              <property name="placeholderText">
+               <string>Действие</string>
+              </property>
+              <property name="frame">
+               <bool>false</bool>
+              </property>
+              <property name="modelColumn">
+               <number>0</number>
               </property>
               <item>
                <property name="text">
@@ -250,7 +250,20 @@ QComboBox QAbstractItemView {
               </item>
              </widget>
             </item>
-            <item row="2" column="3">
+            <item row="3" column="2">
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
              <spacer name="verticalSpacer_3">
               <property name="orientation">
                <enum>Qt::Orientation::Vertical</enum>
@@ -264,19 +277,19 @@ QComboBox QAbstractItemView {
              </spacer>
             </item>
             <item row="0" column="3">
-             <spacer name="verticalSpacer_4">
+             <spacer name="horizontalSpacer_4">
               <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
              </spacer>
             </item>
-            <item row="4" column="3">
+            <item row="2" column="2">
              <widget class="QPushButton" name="pushButton_2">
               <property name="minimumSize">
                <size>
@@ -292,25 +305,8 @@ QComboBox QAbstractItemView {
               </property>
              </widget>
             </item>
-            <item row="1" column="3">
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string/>
-              </property>
-              <property name="icon">
-               <iconset resource="resources/resources.qrc">
-                <normaloff>:/document.svg</normaloff>:/document.svg</iconset>
-              </property>
-              <property name="iconSize">
-               <size>
-                <width>120</width>
-                <height>120</height>
-               </size>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="4">
-             <spacer name="horizontalSpacer_4">
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
               </property>
@@ -322,18 +318,83 @@ QComboBox QAbstractItemView {
               </property>
              </spacer>
             </item>
-            <item row="5" column="3">
-             <spacer name="verticalSpacer_5">
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="outputTab">
+         <attribute name="title">
+          <string>Вывод</string>
+         </attribute>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <property name="horizontalSpacing">
+             <number>4</number>
+            </property>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="pushButton_3">
+              <property name="minimumSize">
+               <size>
+                <width>150</width>
+                <height>25</height>
+               </size>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+              </property>
+              <property name="text">
+               <string>Сохранить</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer_5">
               <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
+               <enum>Qt::Orientation::Horizontal</enum>
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>20</width>
-                <height>40</height>
+                <width>40</width>
+                <height>20</height>
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="1" column="0">
+             <spacer name="horizontalSpacer_6">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0" colspan="3">
+             <widget class="QTextBrowser" name="textBrowser">
+              <property name="styleSheet">
+               <string notr="true">background-color: #22282f;
+color: #fff;
+border: none;
+border-radius: 15px;</string>
+              </property>
+             </widget>
             </item>
            </layout>
           </item>
@@ -346,8 +407,6 @@ QComboBox QAbstractItemView {
    </layout>
   </widget>
  </widget>
- <resources>
-  <include location="resources/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
