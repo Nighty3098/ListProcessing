@@ -62,7 +62,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="mainTab">
          <attribute name="title">
@@ -148,7 +148,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
              </spacer>
             </item>
             <item row="2" column="1">
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="openFileBtn">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -175,7 +175,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
             <item row="1" column="2">
-             <widget class="QComboBox" name="comboBox">
+             <widget class="QComboBox" name="actionBox">
               <property name="minimumSize">
                <size>
                 <width>200</width>
@@ -290,7 +290,7 @@ QComboBox QListView {
              </spacer>
             </item>
             <item row="2" column="2">
-             <widget class="QPushButton" name="pushButton_2">
+             <widget class="QPushButton" name="startProcessBtn">
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -345,7 +345,7 @@ QComboBox QListView {
              <number>4</number>
             </property>
             <item row="1" column="1">
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="saveDataBtn">
               <property name="minimumSize">
                <size>
                 <width>150</width>
@@ -387,7 +387,7 @@ QComboBox QListView {
              </spacer>
             </item>
             <item row="0" column="0" colspan="3">
-             <widget class="QTextBrowser" name="textBrowser">
+             <widget class="QTextBrowser" name="outputText">
               <property name="styleSheet">
                <string notr="true">background-color: #22282f;
 color: #fff;
