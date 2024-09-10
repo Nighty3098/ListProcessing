@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_ListAnalyzer_FILE /home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/ListAnalyzer)
+set(__QT_DEPLOY_TARGET_ListAnalyzer_TYPE EXECUTABLE)

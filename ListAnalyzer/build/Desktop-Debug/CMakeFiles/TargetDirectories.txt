@@ -1,0 +1,9 @@
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/ListAnalyzer.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/install.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/ListAnalyzer_autogen_timestamp_deps.dir
+/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/ListAnalyzer_autogen.dir

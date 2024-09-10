@@ -1,0 +1,18 @@
+# ninja log v6
+1	160	1725974054533679765	ListAnalyzer_autogen/timestamp	83322b80db717da0
+1	160	1725974054533679765	ListAnalyzer_autogen/mocs_compilation.cpp	83322b80db717da0
+1	160	1725974054533679765	/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-MinSizeRel/ListAnalyzer_autogen/timestamp	83322b80db717da0
+1	160	1725974054533679765	/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-MinSizeRel/ListAnalyzer_autogen/mocs_compilation.cpp	83322b80db717da0
+161	169	1725974054547013728	ListAnalyzer_autogen/3YJK5W5UP7/qrc_resources.cpp	66b140a55f70b2c8
+161	169	1725974054547013728	/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-MinSizeRel/ListAnalyzer_autogen/3YJK5W5UP7/qrc_resources.cpp	66b140a55f70b2c8
+170	185	1725974054547013728	CMakeFiles/ListAnalyzer.dir/ListAnalyzer_autogen/3YJK5W5UP7/qrc_resources.cpp.o	ab64055fb66e0c9b
+169	1025	1725974054547013728	CMakeFiles/ListAnalyzer.dir/ListAnalyzer_autogen/mocs_compilation.cpp.o	cf93c1e0064a70ac
+169	1036	1725974054547013728	CMakeFiles/ListAnalyzer.dir/main.cpp.o	169b787cd9246cb
+170	1102	1725974054547013728	CMakeFiles/ListAnalyzer.dir/mainwindow.cpp.o	9aa6111236a8e6b1
+1102	1238	1725974055480391158	ListAnalyzer	ac60f5f5d72ed7bd
+1	22	1725974094705576530	ListAnalyzer_autogen/timestamp	83322b80db717da0
+1	22	1725974094705576530	ListAnalyzer_autogen/mocs_compilation.cpp	83322b80db717da0
+1	22	1725974094705576530	/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-MinSizeRel/ListAnalyzer_autogen/timestamp	83322b80db717da0
+1	22	1725974094705576530	/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-MinSizeRel/ListAnalyzer_autogen/mocs_compilation.cpp	83322b80db717da0
+22	940	1725974094725577473	CMakeFiles/ListAnalyzer.dir/mainwindow.cpp.o	9aa6111236a8e6b1
+940	1081	1725974095642287398	ListAnalyzer	ac60f5f5d72ed7bd

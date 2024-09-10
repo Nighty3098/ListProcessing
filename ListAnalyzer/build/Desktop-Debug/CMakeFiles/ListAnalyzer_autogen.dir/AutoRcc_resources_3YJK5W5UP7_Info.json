@@ -1,0 +1,26 @@
+{
+	"BUILD_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/ListAnalyzer_autogen",
+	"CMAKE_BINARY_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer",
+	"CMAKE_SOURCE_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/ListAnalyzer_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/resources/document.svg",
+		"/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/resources/folder.svg"
+	],
+	"LOCK_FILE" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/ListAnalyzer_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "resources" ],
+	"OUTPUT_CHECKSUM" : "3YJK5W5UP7",
+	"OUTPUT_NAME" : "qrc_resources.cpp",
+	"RCC_EXECUTABLE" : "/usr/lib/qt6/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/build/Desktop-Debug/CMakeFiles/ListAnalyzer_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Used.txt",
+	"SOURCE" : "/home/nighty/Dev/Freelance/code/Processing_the_list_of_objects/ListAnalyzer/resources/resources.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}
