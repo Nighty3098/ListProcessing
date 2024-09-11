@@ -1,6 +1,7 @@
 #include <QDateTime>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QRegularExpression>
 
 #include "./ui_mainwindow.h"
 #include "mainwindow.h"
@@ -85,10 +86,11 @@ QMap<QString, QVector<Object>> groupByDistance(const QVector<Object> &objects,
 
 QMap<QString, QVector<Object>> groupByName(const QVector<Object> &objects) {
   QMap<QString, QVector<Object>> nameGroups;
+  QRegularExpression russianLetterRegex("[А-Яа-я]");
 
   for (const Object &obj : objects) {
     QString firstChar = obj.name.left(1).toUpper();
-    if (!firstChar[0].isLetter()) {
+    if (!russianLetterRegex.match(firstChar).hasMatch()) {
       firstChar = "#";
     }
     nameGroups[firstChar].append(obj);
