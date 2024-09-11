@@ -240,7 +240,7 @@ QComboBox::drop-down {
     subcontrol-position: top right;
     width: 15px;
     border-left-width: 1px;
-    border-left-color: darkgray;
+    border-left-color: #22282f;
     border-left-style: solid;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
