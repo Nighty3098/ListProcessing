@@ -45,13 +45,12 @@ QVector<Object> MainWindow::readObjectsFromFile(const QString &filePath) {
     if (parts.size() < 5)
       continue;
 
-    objects.append(Object(parts[0], parts[1].toDouble(), parts[2].toDouble(),
-                          parts[3], parts[4].toDouble()));
+    objects.emplace_back(parts[0], parts[1].toDouble(), parts[2].toDouble(),
+                         parts[3], parts[4].toDouble());
   }
 
   return objects;
 }
-
 QMap<QString, QVector<Object>> groupByDistance(const QVector<Object> &objects,
                                                double referenceX = 0,
                                                double referenceY = 0) {
