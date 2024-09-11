@@ -10,6 +10,7 @@
 #include <QDateTime>
 #include <QDebug>
 #include <cmath>
+#include <algorithm>
 
 #include <QMainWindow>
 
@@ -20,8 +21,12 @@ struct Object {
     QString type;
     double creationTime;
 
-    double distanceFrom(double x0, double y0) const {
-        return std::sqrt(std::pow(x - x0, 2) + std::pow(y - y0, 2));
+    // Constructor for easy initialization
+    Object(const QString& n = "", double xCoord = 0.0, double yCoord = 0.0, const QString& t = "", double time = 0.0)
+        : name(n), x(xCoord), y(yCoord), type(t), creationTime(time) {}
+
+    double distanceFrom(double referenceX, double referenceY) const {
+        return std::sqrt(std::pow(x - referenceX, 2) + std::pow(y - referenceY, 2));
     }
 };
 

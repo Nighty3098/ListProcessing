@@ -62,7 +62,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="currentIndex">
-         <number>1</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="mainTab">
          <attribute name="title">
@@ -360,19 +360,6 @@ QComboBox QListView {
               </property>
              </widget>
             </item>
-            <item row="1" column="2">
-             <spacer name="horizontalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Orientation::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
             <item row="1" column="0">
              <spacer name="horizontalSpacer_6">
               <property name="orientation">
@@ -395,6 +382,19 @@ border: none;
 border-radius: 15px;</string>
               </property>
              </widget>
+            </item>
+            <item row="1" column="2">
+             <spacer name="horizontalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>

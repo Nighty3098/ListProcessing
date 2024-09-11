@@ -48,16 +48,10 @@ QVector<Object> MainWindow::readObjectsFromFile(const QString& filePath) {
         QString line = in.readLine();
         QStringList parts = line.split(' ');
 
-        if (parts.size() < 5) continue;
+        if (parts.size() < 5) continue; // Skip lines with insufficient data
 
-        Object obj;
-        obj.name = parts[0];
-        obj.x = parts[1].toDouble();
-        obj.y = parts[2].toDouble();
-        obj.type = parts[3];
-        obj.creationTime = parts[4].toDouble();
-
-        objects.append(obj);
+        // Use emplace_back for efficiency
+        objects.emplace_back(parts[0], parts[1].toDouble(), parts[2].toDouble(), parts[3], parts[4].toDouble());
     }
 
     return objects;
@@ -93,6 +87,7 @@ QMap<QString, QVector<Object>> groupByName(const QVector<Object>& objects) {
         nameGroups[firstChar].append(obj);
     }
 
+    // Sort groups by name
     for (auto& group : nameGroups) {
         std::sort(group.begin(), group.end(), [](const Object& a, const Object& b) {
             return a.name < b.name;
@@ -104,12 +99,12 @@ QMap<QString, QVector<Object>> groupByName(const QVector<Object>& objects) {
 
 QMap<QString, QVector<Object>> groupByType(const QVector<Object>& objects) {
     QMap<QString, QVector<Object>> typeGroups;
-    QMap<QString, QVector<Object>> resultGroups;
 
     for (const Object& obj : objects) {
         typeGroups[obj.type].append(obj);
     }
 
+    QMap<QString, QVector<Object>> resultGroups;
     for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
         if (it.value().size() > 1) {
             resultGroups[it.key()] = it.value();
@@ -150,47 +145,37 @@ QMap<QString, QVector<Object>> groupByCreationTime(const QVector<Object>& object
 void MainWindow::groupAndSortObjects(const QVector<Object>& objects, int mode) {
     ui->outputText->clear();
     QString output;
+
+    // Store the groups in a variable to avoid multiple calls
+    QMap<QString, QVector<Object>> groupedObjects;
+
     switch (mode) {
     case 0:
-        for (const auto& group : groupByDistance(objects).keys()) {
-            output += group + ":\n";
-            for (const auto& obj : groupByDistance(objects)[group]) {
-                output += "  " + obj.name + "\n";
-            }
-            output += "\n";
-        }
+        groupedObjects = groupByDistance(objects);
         break;
     case 1:
-        for (const auto& group : groupByName(objects).keys()) {
-            output += group + ":\n";
-            for (const auto& obj : groupByName(objects)[group]) {
-                output += "  " + obj.name + "\n";
-            }
-            output += "\n";
-        }
+        groupedObjects = groupByName(objects);
         break;
     case 2:
-        for (const auto& group : groupByType(objects).keys()) {
-            output += group + ":\n";
-            for (const auto& obj : groupByType(objects)[group]) {
-                output += "  " + obj.name + "\n";
-            }
-            output += "\n";
-        }
+        groupedObjects = groupByType(objects);
         break;
     case 3:
-        for (const auto& group : groupByCreationTime(objects).keys()) {
-            output += group + ":\n";
-            for (const auto& obj : groupByCreationTime(objects)[group]) {
-                output += "  " + obj.name + "\n";
-            }
-            output += "\n";
-        }
+        groupedObjects = groupByCreationTime(objects);
         break;
     default:
-        break;
+        return; // Exit if mode is invalid
     }
-    ui->outputText->setText(output);
+
+    // Construct the output string
+    for (const auto& group : groupedObjects.keys()) {
+        output += group + ":\n";
+        for (const auto& obj : groupedObjects[group]) {
+            output += "  " + obj.name + "\n";
+        }
+        output += "\n";
+    }
+
+    ui->outputText->setText(output); // Set the output in the QTextBrowser
 }
 
 void MainWindow::saveOutputData(QString savingFilePath) {
@@ -207,4 +192,3 @@ void MainWindow::on_startProcessBtn_clicked()
     QVector<Object> objects = readObjectsFromFile(filePath);
     groupAndSortObjects(objects, mode);
 }
-
