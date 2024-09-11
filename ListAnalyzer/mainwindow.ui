@@ -17,7 +17,7 @@
    <iconset theme="QIcon::ThemeIcon::GoHome"/>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #0d1117; color: #ffffff; border: none; border-radius: 15px;</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -29,40 +29,13 @@
          <bool>false</bool>
         </property>
         <property name="styleSheet">
-         <string notr="true">QTabWidget::tab-bar { alignment: center; }
-
-QTabWidet {
-	background-color: #0d1117;
-}
-
-QTabWidget::pane {
-    border: 0px solid lightgray;
-    border-radius: 10px;
-    background: transparent;
-}
-
-QTabBar::tab {
-	width: 100px;
-	height: 25px;
-	margin: 4px;
-	border: none;
-	background: transparent	;
-}
-
-QTabBar::tab:selected, QTabBar::tab:hover {
-    background: #22282f;
-	color: #fff;
-	border-radius: 5px;
-	width: 100px;
-	height: 25px;
-	margin: 4px;
-}</string>
+         <string notr="true"/>
         </property>
         <property name="tabPosition">
          <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>0</number>
         </property>
         <widget class="QWidget" name="mainTab">
          <attribute name="title">
@@ -75,13 +48,17 @@ QTabBar::tab:selected, QTabBar::tab:hover {
              <widget class="QLabel" name="label">
               <property name="font">
                <font>
-                <pointsize>45</pointsize>
+                <pointsize>50</pointsize>
                 <italic>true</italic>
-                <bold>true</bold>
+                <bold>false</bold>
+                <underline>false</underline>
                </font>
               </property>
               <property name="text">
                <string>ListProcessing</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignCenter</set>
               </property>
              </widget>
             </item>
@@ -156,10 +133,13 @@ QTabBar::tab:selected, QTabBar::tab:hover {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Открыть файл</string>
+              </property>
+              <property name="shortcut">
+               <string>Ctrl+O</string>
               </property>
              </widget>
             </item>
@@ -186,38 +166,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
                <bool>false</bool>
               </property>
               <property name="styleSheet">
-               <string notr="true">QComboBox {
-	selection-background-color: #5e5e5e;
-	background-color: #22282f ;	
-	border-radius: 7px;
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-    width: 15px;
-    border-left-width: 1px;
-    border-left-color: darkgray;
-    border-left-style: solid;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-	selection-background-color: #5e5e5e;
-}
-
-QComboBox::down-arrow:on {
-    top: 1px;
-    left: 1px;
-}
-
-QComboBox QAbstractItemView {
-  border: 1px solid grey;
-  background-color: #22282f ;
-  selection-background-color: #5e5e5e;
-}
-
-QComboBox QListView {
-	background-color: lightgreen;
-}</string>
+               <string notr="true"/>
               </property>
               <property name="placeholderText">
                <string>Действие</string>
@@ -298,10 +247,13 @@ QComboBox QListView {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Обработать</string>
+              </property>
+              <property name="shortcut">
+               <string>Ctrl+Return</string>
               </property>
              </widget>
             </item>
@@ -353,10 +305,16 @@ QComboBox QListView {
                </size>
               </property>
               <property name="styleSheet">
-               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>Сохранить</string>
+              </property>
+              <property name="shortcut">
+               <string>Ctrl+S</string>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -376,10 +334,7 @@ QComboBox QListView {
             <item row="0" column="0" colspan="3">
              <widget class="QTextBrowser" name="outputText">
               <property name="styleSheet">
-               <string notr="true">background-color: #22282f;
-color: #fff;
-border: none;
-border-radius: 15px;</string>
+               <string notr="true">background: transparent; border: none;</string>
               </property>
              </widget>
             </item>
