@@ -209,4 +209,5 @@ void MainWindow::on_startProcessBtn_clicked() {
   int mode = ui->actionBox->currentIndex();
   QVector<Object> objects = readObjectsFromFile(filePath);
   groupAndSortObjects(objects, mode);
+  ui->tabWidget->setCurrentIndex(2);
 }
