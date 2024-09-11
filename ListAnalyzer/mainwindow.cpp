@@ -148,44 +148,49 @@ QMap<QString, QVector<Object>> groupByCreationTime(const QVector<Object>& object
 }
 
 void MainWindow::groupAndSortObjects(const QVector<Object>& objects, int mode) {
-    auto groupedByDistance = groupByDistance(objects);
-    auto groupedByName = groupByName(objects);
-    auto groupedByType = groupByType(objects);
-    auto groupedByTime = groupByCreationTime(objects);
-
-    if (mode == 0 ){
-        for (const auto& group : groupedByDistance.keys()) {
-            qDebug() << group << ":";
-            for (const auto& obj : groupedByDistance[group]) {
-                qDebug() << "  " << obj.name;
+    ui->outputText->clear();
+    QString output;
+    switch (mode) {
+    case 0:
+        for (const auto& group : groupByDistance(objects).keys()) {
+            output += group + ":\n";
+            for (const auto& obj : groupByDistance(objects)[group]) {
+                output += "  " + obj.name + "\n";
             }
+            output += "\n";
         }
-    }
-    if (mode == 1 ){
-        for (const auto& group : groupedByName.keys()) {
-            qDebug() << group << ":";
-            for (const auto& obj : groupedByName[group]) {
-                qDebug() << "  " << obj.name;
+        break;
+    case 1:
+        for (const auto& group : groupByName(objects).keys()) {
+            output += group + ":\n";
+            for (const auto& obj : groupByName(objects)[group]) {
+                output += "  " + obj.name + "\n";
             }
+            output += "\n";
         }
-    }
-    if (mode == 2 ){
-        for (const auto& group : groupedByType.keys()) {
-            qDebug() << group << ":";
-            for (const auto& obj : groupedByType[group]) {
-                qDebug() << "  " << obj.name;
+        break;
+    case 2:
+        for (const auto& group : groupByType(objects).keys()) {
+            output += group + ":\n";
+            for (const auto& obj : groupByType(objects)[group]) {
+                output += "  " + obj.name + "\n";
             }
+            output += "\n";
         }
-    }
-    if (mode == 3 ){
-        for (const auto& group : groupedByTime.keys()) {
-            qDebug() << group << ":";
-            for (const auto& obj : groupedByTime[group]) {
-                qDebug() << "  " << obj.name;
+        break;
+    case 3:
+        for (const auto& group : groupByCreationTime(objects).keys()) {
+            output += group + ":\n";
+            for (const auto& obj : groupByCreationTime(objects)[group]) {
+                output += "  " + obj.name + "\n";
             }
+            output += "\n";
         }
+        break;
+    default:
+        break;
     }
-    else {}
+    ui->outputText->setText(output);
 }
 
 void MainWindow::saveOutputData(QString savingFilePath) {
