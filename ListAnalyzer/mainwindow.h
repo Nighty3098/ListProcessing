@@ -10,7 +10,6 @@
 #include <QDateTime>
 #include <QDebug>
 #include <cmath>
-#include <algorithm>
 
 #include <QMainWindow>
 
@@ -21,7 +20,6 @@ struct Object {
     QString type;
     double creationTime;
 
-    // Constructor for easy initialization
     Object(const QString& n = "", double xCoord = 0.0, double yCoord = 0.0, const QString& t = "", double time = 0.0)
         : name(n), x(xCoord), y(yCoord), type(t), creationTime(time) {}
 

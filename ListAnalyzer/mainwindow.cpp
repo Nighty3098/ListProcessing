@@ -48,29 +48,35 @@ QVector<Object> MainWindow::readObjectsFromFile(const QString& filePath) {
         QString line = in.readLine();
         QStringList parts = line.split(' ');
 
-        if (parts.size() < 5) continue; // Skip lines with insufficient data
+        if (parts.size() < 5) continue;
 
-        // Use emplace_back for efficiency
         objects.emplace_back(parts[0], parts[1].toDouble(), parts[2].toDouble(), parts[3], parts[4].toDouble());
     }
 
     return objects;
 }
-
 QMap<QString, QVector<Object>> groupByDistance(const QVector<Object>& objects, double referenceX = 0, double referenceY = 0) {
     QMap<QString, QVector<Object>> distanceGroups;
 
     for (const Object& obj : objects) {
         double distance = obj.distanceFrom(referenceX, referenceY);
+        QString group;
         if (distance < 100) {
-            distanceGroups["До 100 ед"].append(obj);
+            group = "До 100 ед";
         } else if (distance < 1000) {
-            distanceGroups["До 1000 ед"].append(obj);
+            group = "До 1000 ед";
         } else if (distance < 10000) {
-            distanceGroups["До 10000 ед"].append(obj);
+            group = "До 10000 ед";
         } else {
-            distanceGroups["Слишком далеко"].append(obj);
+            group = "Слишком далеко";
         }
+        distanceGroups[group].append(obj);
+    }
+
+    for (auto& group : distanceGroups) {
+        std::sort(group.begin(), group.end(), [&](const Object& a, const Object& b) {
+            return a.distanceFrom(referenceX, referenceY) < b.distanceFrom(referenceX, referenceY);
+        });
     }
 
     return distanceGroups;
@@ -87,7 +93,6 @@ QMap<QString, QVector<Object>> groupByName(const QVector<Object>& objects) {
         nameGroups[firstChar].append(obj);
     }
 
-    // Sort groups by name
     for (auto& group : nameGroups) {
         std::sort(group.begin(), group.end(), [](const Object& a, const Object& b) {
             return a.name < b.name;
@@ -97,7 +102,7 @@ QMap<QString, QVector<Object>> groupByName(const QVector<Object>& objects) {
     return nameGroups;
 }
 
-QMap<QString, QVector<Object>> groupByType(const QVector<Object>& objects) {
+QMap<QString, QVector<Object>> groupByType(const QVector<Object>& objects, int minObjectsPerGroup = 2) {
     QMap<QString, QVector<Object>> typeGroups;
 
     for (const Object& obj : objects) {
@@ -106,11 +111,17 @@ QMap<QString, QVector<Object>> groupByType(const QVector<Object>& objects) {
 
     QMap<QString, QVector<Object>> resultGroups;
     for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
-        if (it.value().size() > 1) {
+        if (it.value().size() >= minObjectsPerGroup) {
             resultGroups[it.key()] = it.value();
         } else {
-            resultGroups["Разное"].append(it.value().first());
+            resultGroups["#"].append(it.value());
         }
+    }
+
+    for (auto& group : resultGroups) {
+        std::sort(group.begin(), group.end(), [](const Object& a, const Object& b) {
+            return a.name < b.name;
+        });
     }
 
     return resultGroups;
@@ -124,29 +135,35 @@ QMap<QString, QVector<Object>> groupByCreationTime(const QVector<Object>& object
         QDateTime creationTime = QDateTime::fromMSecsSinceEpoch(static_cast<qint64>(obj.creationTime * 1000));
         int daysDiff = creationTime.date().daysTo(now.date());
 
+        QString group;
         if (daysDiff == 0) {
-            timeGroups["Сегодня"].append(obj);
-        } else if (daysDiff == -1) {
-            timeGroups["Завтра"].append(obj);
-        } else if (daysDiff <= 6 && daysDiff > 0) {
-            timeGroups["На этой неделе"].append(obj);
+            group = "Сегодня";
+        } else if (daysDiff == 1) {
+            group = "Завтра";
+        } else if (daysDiff <= 6) {
+            group = "На этой неделе";
         } else if (creationTime.date().month() == now.date().month() && creationTime.date().year() == now.date().year()) {
-            timeGroups["В этом месяце"].append(obj);
+            group = "В этом месяце";
         } else if (creationTime.date().year() == now.date().year()) {
-            timeGroups["В этом году"].append(obj);
+            group = "В этом году";
         } else {
-            timeGroups["Ранее"].append(obj);
+            group = "Ранее";
         }
+        timeGroups[group].append(obj);
+    }
+
+    for (auto& group : timeGroups) {
+        std::sort(group.begin(), group.end(), [](const Object& a, const Object& b) {
+            return a.creationTime < b.creationTime;
+        });
     }
 
     return timeGroups;
 }
-
 void MainWindow::groupAndSortObjects(const QVector<Object>& objects, int mode) {
     ui->outputText->clear();
     QString output;
 
-    // Store the groups in a variable to avoid multiple calls
     QMap<QString, QVector<Object>> groupedObjects;
 
     switch (mode) {
@@ -163,10 +180,9 @@ void MainWindow::groupAndSortObjects(const QVector<Object>& objects, int mode) {
         groupedObjects = groupByCreationTime(objects);
         break;
     default:
-        return; // Exit if mode is invalid
+        return;
     }
 
-    // Construct the output string
     for (const auto& group : groupedObjects.keys()) {
         output += group + ":\n";
         for (const auto& obj : groupedObjects[group]) {
@@ -175,7 +191,7 @@ void MainWindow::groupAndSortObjects(const QVector<Object>& objects, int mode) {
         output += "\n";
     }
 
-    ui->outputText->setText(output); // Set the output in the QTextBrowser
+    ui->outputText->setText(output);
 }
 
 void MainWindow::saveOutputData(QString savingFilePath) {
