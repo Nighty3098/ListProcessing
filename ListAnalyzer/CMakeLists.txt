@@ -25,6 +25,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
 
         resources/resources.qrc
+        dataprocessor.h dataprocessor.cpp
+        object.h object.cpp
+
 
     )
 # Define target properties for Android with Qt 6 as:
