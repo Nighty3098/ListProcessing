@@ -13,10 +13,10 @@ public:
     double x;
     double y;
     QString type;
-    double creationTime; // In seconds since epoch
+    double creationTime;
 
 private:
-    bool valid; // Indicates whether the object is valid
+    bool valid;
 };
 
 #endif // OBJECT_H
