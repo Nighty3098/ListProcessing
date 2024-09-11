@@ -43,7 +43,7 @@ QTabWidget::pane {
 
 QTabBar::tab {
 	width: 100px;
-	height: 25px;
+	height: 30px;
 	margin: 4px;
 	border: none;
 	background: transparent	;
@@ -54,7 +54,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
 	color: #fff;
 	border-radius: 5px;
 	width: 100px;
-	height: 25px;
+	height: 30px;
 	margin: 4px;
 }</string>
         </property>
@@ -75,7 +75,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
              <widget class="QLabel" name="label">
               <property name="font">
                <font>
-                <pointsize>45</pointsize>
+                <pointsize>55</pointsize>
                 <italic>true</italic>
                 <bold>true</bold>
                </font>
@@ -155,7 +155,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
               <property name="minimumSize">
                <size>
                 <width>0</width>
-                <height>25</height>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
@@ -221,8 +221,8 @@ QTabBar::tab:selected, QTabBar::tab:hover {
                <widget class="QComboBox" name="actionBox">
                 <property name="minimumSize">
                  <size>
-                  <width>200</width>
-                  <height>25</height>
+                  <width>300</width>
+                  <height>30</height>
                  </size>
                 </property>
                 <property name="autoFillBackground">
@@ -297,8 +297,8 @@ QComboBox QListView {
                <widget class="QPushButton" name="startProcessBtn">
                 <property name="minimumSize">
                  <size>
-                  <width>0</width>
-                  <height>25</height>
+                  <width>300</width>
+                  <height>30</height>
                  </size>
                 </property>
                 <property name="styleSheet">
@@ -367,8 +367,8 @@ QComboBox QListView {
              <widget class="QPushButton" name="saveDataBtn">
               <property name="minimumSize">
                <size>
-                <width>150</width>
-                <height>25</height>
+                <width>300</width>
+                <height>30</height>
                </size>
               </property>
               <property name="styleSheet">
