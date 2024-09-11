@@ -182,6 +182,6 @@ void DataProcessor::saveOutputData(const QString &filePath) {
     }
 
     QTextStream out(&file);
-    out << "Output data goes here...\n"; // Placeholder for actual data
+    out << "Output data goes here...\n";
     file.close();
 }
