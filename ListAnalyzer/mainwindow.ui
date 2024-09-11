@@ -62,7 +62,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="currentIndex">
-         <number>2</number>
+         <number>1</number>
         </property>
         <widget class="QWidget" name="mainTab">
          <attribute name="title">
@@ -82,6 +82,9 @@ QTabBar::tab:selected, QTabBar::tab:hover {
               </property>
               <property name="text">
                <string>ListProcessing</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignmentFlag::AlignBottom|Qt::AlignmentFlag::AlignHCenter</set>
               </property>
              </widget>
             </item>
@@ -174,19 +177,59 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <layout class="QGridLayout" name="gridLayout_3">
-            <item row="1" column="2">
-             <widget class="QComboBox" name="actionBox">
-              <property name="minimumSize">
+            <item row="4" column="2">
+             <spacer name="verticalSpacer_5">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
                <size>
-                <width>200</width>
-                <height>25</height>
+                <width>20</width>
+                <height>40</height>
                </size>
               </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <spacer name="verticalSpacer_3">
+              <property name="orientation">
+               <enum>Qt::Orientation::Vertical</enum>
               </property>
-              <property name="styleSheet">
-               <string notr="true">QComboBox {
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="2">
+             <layout class="QVBoxLayout" name="verticalLayout_5">
+              <property name="leftMargin">
+               <number>12</number>
+              </property>
+              <property name="topMargin">
+               <number>12</number>
+              </property>
+              <property name="rightMargin">
+               <number>12</number>
+              </property>
+              <property name="bottomMargin">
+               <number>12</number>
+              </property>
+              <item>
+               <widget class="QComboBox" name="actionBox">
+                <property name="minimumSize">
+                 <size>
+                  <width>200</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="autoFillBackground">
+                 <bool>false</bool>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">QComboBox {
 	selection-background-color: #5e5e5e;
 	background-color: #22282f ;	
 	border-radius: 7px;
@@ -218,65 +261,57 @@ QComboBox QAbstractItemView {
 QComboBox QListView {
 	background-color: lightgreen;
 }</string>
-              </property>
-              <property name="placeholderText">
-               <string>Действие</string>
-              </property>
-              <property name="frame">
-               <bool>false</bool>
-              </property>
-              <property name="modelColumn">
-               <number>0</number>
-              </property>
-              <item>
-               <property name="text">
-                <string>Группировка по расстоянию</string>
-               </property>
+                </property>
+                <property name="placeholderText">
+                 <string>Действие</string>
+                </property>
+                <property name="frame">
+                 <bool>false</bool>
+                </property>
+                <property name="modelColumn">
+                 <number>0</number>
+                </property>
+                <item>
+                 <property name="text">
+                  <string>Группировка по расстоянию</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Группировка по имени</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Группировка по типу</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Группировка по времени создания</string>
+                 </property>
+                </item>
+               </widget>
               </item>
               <item>
-               <property name="text">
-                <string>Группировка по имени</string>
-               </property>
+               <widget class="QPushButton" name="startProcessBtn">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>25</height>
+                 </size>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+                </property>
+                <property name="text">
+                 <string>Обработать</string>
+                </property>
+               </widget>
               </item>
-              <item>
-               <property name="text">
-                <string>Группировка по типу</string>
-               </property>
-              </item>
-              <item>
-               <property name="text">
-                <string>Группировка по времени создания</string>
-               </property>
-              </item>
-             </widget>
+             </layout>
             </item>
-            <item row="3" column="2">
-             <spacer name="verticalSpacer_5">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="2">
-             <spacer name="verticalSpacer_3">
-              <property name="orientation">
-               <enum>Qt::Orientation::Vertical</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>20</width>
-                <height>40</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="3">
+            <item row="1" column="3">
              <spacer name="horizontalSpacer_4">
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
@@ -289,23 +324,7 @@ QComboBox QListView {
               </property>
              </spacer>
             </item>
-            <item row="2" column="2">
-             <widget class="QPushButton" name="startProcessBtn">
-              <property name="minimumSize">
-               <size>
-                <width>0</width>
-                <height>25</height>
-               </size>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">background-color: #22282f; border-radius: 7px;</string>
-              </property>
-              <property name="text">
-               <string>Обработать</string>
-              </property>
-             </widget>
-            </item>
-            <item row="0" column="0">
+            <item row="1" column="0">
              <spacer name="horizontalSpacer">
               <property name="orientation">
                <enum>Qt::Orientation::Horizontal</enum>
