@@ -21,6 +21,7 @@ qmake ../ListAnalyzer.pro && make
 ### Добавление новых записей в БД:
 
 Поле `координаты`: позиция_по_x позиция_по_y
+
 Поле `время создания`: дата в формате Unix timestamp
 
 ![Снимок экрана от 2024-09-12 21-00-31](https://github.com/user-attachments/assets/4b88722e-4e1b-4080-baa7-ce8af77e8bd6)
