@@ -24,6 +24,8 @@ private slots:
     void on_startProcessBtn_clicked();
     void updateOutput(const QString &output);
 
+    void on_addDataBtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QString filePath;
