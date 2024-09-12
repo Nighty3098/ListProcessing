@@ -5,7 +5,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QTextStream>
-
+#include <QThread>
 #include <QDebug>
 #include <QMessageBox>
 #include <QSqlDatabase>
@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow),
       dataProcessor(new DataProcessor(this)) {
   ui->setupUi(this);
+
+    dataProcessor->createConnection(ui->filePathLbl->text());
   connect(dataProcessor, &DataProcessor::dataProcessed, this,
           &MainWindow::updateOutput);
 }
@@ -65,14 +67,20 @@ void MainWindow::on_saveDataBtn_clicked() {
 }
 
 void MainWindow::on_startProcessBtn_clicked() {
-  QString dataPath = ui->filePathLbl->text();
-  if (!dataPath.isEmpty()) {
-    int mode = ui->actionBox->currentIndex();
-    dataProcessor->processFile(filePath, mode);
-    ui->tabWidget->setCurrentIndex(2);
-  } else {
-    QMessageBox::information(this, "!!!", "Сначала откройте файл");
-  }
+    QThread *dbThread = new QThread;
+    QObject::connect(dbThread, &QThread::started, this, [this]() {
+        QString dataPath = ui->filePathLbl->text();
+        if (!dataPath.isEmpty()) {
+            int mode = ui->actionBox->currentIndex();
+            dataProcessor->processFile(filePath, mode);
+            ui->tabWidget->setCurrentIndex(2);
+        } else {
+            QMessageBox::information(this, "!!!", "Сначала откройте файл");
+        }
+    });
+    QObject::connect(dbThread, &QThread::finished, dbThread, &QObject::deleteLater);
+
+    dbThread->start();
 }
 
 void MainWindow::updateOutput(const QString &output) {
@@ -80,42 +88,14 @@ void MainWindow::updateOutput(const QString &output) {
 }
 
 void MainWindow::on_addDataBtn_clicked() {
+  QString db_path = ui->filePathLbl->text();
 
   QString objName = ui->objNameData->text();
   QString objPos = ui->objPosData->text();
   QString objType = ui->objTypeData->text();
   QString objCT = ui->objCTData->text();
 
-  if (objName.isEmpty() || objPos.isEmpty() || objType.isEmpty() ||
-      objCT.isEmpty()) {
-    QMessageBox::warning(this, "Ошибка", "Пожалуйста, заполните все поля.");
-    return;
-  }
-
-  QString dataPath = ui->filePathLbl->text();
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-  db.setDatabaseName(dataPath);
-
-  QSqlQuery query;
-  query.prepare("INSERT INTO objects (name, position, type, creation_time) "
-                "VALUES (?, ?, ?, ?)");
-  query.addBindValue(objName);
-  query.addBindValue(objPos);
-  query.addBindValue(objType);
-  query.addBindValue(objCT);
-
-  if (!query.exec()) {
-    QMessageBox::warning(this, "Ошибка",
-                         "Не удалось сохранить данные в базе данных: " +
-                             query.lastError().text());
-    qDebug() << "Database error:" << query.lastError().text();
-    return;
-  }
-
-  QMessageBox::information(this, "Успех",
-                           "Данные успешно сохранены в базе данных.");
-
-  db.close();
+  dataProcessor->addNewData(objName, objPos, objType, objCT, db_path);
 
   int mode = ui->actionBox->currentIndex();
   dataProcessor->processFile(filePath, mode);
