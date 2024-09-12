@@ -17,6 +17,10 @@ set(PROJECT_SOURCES
         mainwindow.cpp
         mainwindow.h
         mainwindow.ui
+        dataprocessor.cpp
+        dataprocessor.h
+        object.h
+        object.cpp
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
