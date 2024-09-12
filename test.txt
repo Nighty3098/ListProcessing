@@ -1,0 +1,117 @@
+Дерево:
+  AbzwXn
+  EHEmAxUCBf
+  IXpdoyI
+  IwNMOy
+  NzbkDnC
+  ROiyZJLH
+  TICHx
+  Tzone
+  VYbIEa
+  XBqrN
+  XLvRfjWdAy
+  ZOiNYoY
+  chIEgy
+  ddXphWI
+  eEgxtOuiH
+  hfDaVpTD
+  jMDDdkyMm
+  jjWKOX
+  lNSdDmP
+  lgyHZChxFl
+  mehqTS
+  tKKAAZwjF
+  uhtbZqnqd
+  xKVIt
+  yEmfd
+  ztLQSPayUh
+
+Здание:
+  CDYovIMr
+  EIYnh
+  Fpcfm
+  HAqMnPxqW
+  IuecIGzT
+  LHwHpnNVjo
+  ZQXUkq
+  ayQAJ
+  cnHYnRCx
+  dXCpYoyd
+  gTzeQ
+  gbsOGjS
+  gnXjAguF
+  kaDwEPtCdh
+  leganHdOQ
+  qEZkpvUn
+  rBsfaujZZ
+  sheQI
+  syvDLxcF
+  tfKWTmg
+  uPjUZBN
+  xzcEgWl
+  Магазин
+
+Машина:
+  AiquBYH
+  BrrUfCivnJ
+  Cmvzs
+  DuzyvCO
+  ExYPaRab
+  GiyWNFs
+  JdCYb
+  MQLqyed
+  MsVfEm
+  NBDrPyaeW
+  OFZkcqc
+  OXPPE
+  PvLGvPd
+  QcZdEBg
+  TQXmkIsKc
+  WeToJTkKTw
+  WxEZYCRcL
+  YTKCR
+  YjniRRrcS
+  ZHVTrtzEsH
+  bCxwUQ
+  bMaJcNA
+  bTvxzQZLao
+  fPoIYCGJdN
+  goASGeH
+  hMAVyJd
+  jcWGTZVsFb
+  kMtcrAx
+  kqepVrSN
+  nofta
+  oHzVA
+  pUHMAb
+  sqJsRxGopy
+  suAifq
+  ufxeXqupz
+  vaGlKAW
+  xYNuuvQZee
+  zpdjbaLhmL
+  Лада
+
+Телефон:
+  ABhone
+  APhone
+  BPhone
+  CPhone
+
+Человек:
+  BytOHve
+  BzHAeYu
+  CHgDvupu
+  NwxKj
+  QuckLeZW
+  bvhrPmKGu
+  hCToMsj
+  hxbXc
+  jqZYRPxpQ
+  jyUtPa
+  kXghDYj
+  ojcvT
+  qUTBlqhci
+  vpcXcd
+  Кривой
+

@@ -17,6 +17,31 @@ MainWindow::~MainWindow() {
     delete dataProcessor;
 }
 
+void MainWindow::saveDataToFile(QTextBrowser *textEdit, QWidget *parent) {
+    QString data = textEdit->toPlainText();
+    if (data.isEmpty()) {
+        QMessageBox::warning(parent, "Ошибка", "Поле для ввода данных пустое.");
+        return;
+    }
+
+    QString directory = QFileDialog::getSaveFileName(parent, "Выберите папку для сохранения файла");
+    if (directory.isEmpty()) {
+        return;
+    }
+
+    QFile file(directory);
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QMessageBox::warning(parent, "Ошибка", "Не удалось открыть файл для записи.");
+        return;
+    }
+
+    QTextStream out(&file);
+    out << data;
+    file.close();
+
+    QMessageBox::information(parent, "Успех", "Данные успешно сохранены в файл.");
+}
+
 void MainWindow::on_openFileBtn_clicked() {
     filePath = QFileDialog::getOpenFileName(this, "Open File", "", "Text Files (*.txt)");
     if (!filePath.isEmpty()) {
@@ -25,10 +50,7 @@ void MainWindow::on_openFileBtn_clicked() {
 }
 
 void MainWindow::on_saveDataBtn_clicked() {
-    QString savingFilePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.txt)");
-    if (!savingFilePath.isEmpty()) {
-        dataProcessor->saveOutputData(savingFilePath);
-    }
+    saveDataToFile(ui->outputText, this);
 }
 
 void MainWindow::on_startProcessBtn_clicked() {

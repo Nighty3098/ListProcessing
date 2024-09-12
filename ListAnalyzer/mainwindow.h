@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QMap>
 #include "object.h"
+#include <QTextBrowser>
 #include "dataprocessor.h"
 
 namespace Ui {
@@ -25,7 +26,7 @@ private slots:
     void updateOutput(const QString &output);
 
     void on_addDataBtn_clicked();
-
+    void saveDataToFile(QTextBrowser *textEdit, QWidget *parent);
 private:
     Ui::MainWindow *ui;
     QString filePath;
