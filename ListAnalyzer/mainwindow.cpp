@@ -18,14 +18,14 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::on_openFileBtn_clicked() {
-    filePath = QFileDialog::getOpenFileName(this, "Open File", "", "Text Files (*.txt)");
+    filePath = QFileDialog::getOpenFileName(this, "Open File", "", "Files (*.db)");
     if (!filePath.isEmpty()) {
         ui->filePathLbl->setText(filePath);
     }
 }
 
 void MainWindow::on_saveDataBtn_clicked() {
-    QString savingFilePath = QFileDialog::getSaveFileName(this, "Save File", "", "Text Files (*.txt)");
+    QString savingFilePath = QFileDialog::getSaveFileName(this, "Save File", "", "Files (*.db)");
     if (!savingFilePath.isEmpty()) {
         dataProcessor->saveOutputData(savingFilePath);
     }
