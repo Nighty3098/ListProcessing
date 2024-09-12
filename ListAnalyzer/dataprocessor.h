@@ -7,6 +7,9 @@
 #include <QString>
 #include "object.h"
 
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
+
 class DataProcessor : public QObject {
     Q_OBJECT
 
