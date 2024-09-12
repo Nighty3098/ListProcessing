@@ -51,7 +51,8 @@ void MainWindow::on_addDataBtn_clicked() {
         QFile file(dataPath);
 
         if (!file.open(QIODevice::Append | QIODevice::Text)) {
-            qWarning() << "Cannot open file for writing:" << dataPath;
+            QMessageBox::warning(this, "!!!", "Файл не доступен для записи");
+            qDebug() << "Cannot open file for writing:" << dataPath;
             return;
         }
 
