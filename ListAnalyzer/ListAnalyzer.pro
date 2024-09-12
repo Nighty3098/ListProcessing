@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = ListAnalyzer
-VERSION = 0.1
+VERSION = 6.7
 
 QT += widgets core sql
 
