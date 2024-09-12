@@ -62,7 +62,7 @@ QTabBar::tab:selected, QTabBar::tab:hover {
          <enum>QTabWidget::TabPosition::North</enum>
         </property>
         <property name="currentIndex">
-         <number>3</number>
+         <number>2</number>
         </property>
         <widget class="QWidget" name="mainTab">
          <attribute name="title">
@@ -259,7 +259,7 @@ QComboBox QAbstractItemView {
 }
 
 QComboBox QListView {
-	background-color: lightgreen;
+	background-color: #22282f;
 }</string>
                 </property>
                 <property name="placeholderText">
@@ -477,6 +477,9 @@ border-radius: 15px;</string>
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
                 </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
                 <property name="placeholderText">
                  <string>Имя объекта</string>
                 </property>
@@ -492,6 +495,9 @@ border-radius: 15px;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="placeholderText">
                  <string>Координаты</string>
@@ -509,6 +515,9 @@ border-radius: 15px;</string>
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
                 </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
+                </property>
                 <property name="placeholderText">
                  <string>Тип объекта</string>
                 </property>
@@ -524,6 +533,9 @@ border-radius: 15px;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
                 <property name="placeholderText">
                  <string>Время создания</string>
