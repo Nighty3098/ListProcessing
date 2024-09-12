@@ -566,6 +566,9 @@ QTextBrowser::QScrollBar::add-page, QScrollBar::sub-page {
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
                 </property>
+                <property name="inputMask">
+                 <string/>
+                </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>
                 </property>
