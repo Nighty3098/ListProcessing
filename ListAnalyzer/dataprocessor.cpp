@@ -4,58 +4,58 @@
 #include <QFile>
 #include <QRegularExpression>
 #include <QTextStream>
-#include <algorithm>
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
+#include <algorithm>
 
 DataProcessor::DataProcessor(QObject *parent) : QObject(parent) {}
 
 void DataProcessor::processFile(const QString &filePath, int mode) {
-    QVector<Object> objects = readObjectsFromFile(filePath);
-    QMap<QString, QVector<Object>> groupedObjects;
+  QVector<Object> objects = readObjectsFromFile(filePath);
+  QMap<QString, QVector<Object>> groupedObjects;
 
-    switch (mode) {
-    case 0:
-        groupedObjects = groupByDistance(objects);
-        break;
-    case 1:
-        groupedObjects = groupByName(objects);
-        break;
-    case 2:
-        groupedObjects = groupByType(objects);
-        break;
-    case 3:
-        groupedObjects = groupByCreationTime(objects);
-        break;
-    default:
-        return;
-    }
+  switch (mode) {
+  case 0:
+    groupedObjects = groupByDistance(objects);
+    break;
+  case 1:
+    groupedObjects = groupByName(objects);
+    break;
+  case 2:
+    groupedObjects = groupByType(objects);
+    break;
+  case 3:
+    groupedObjects = groupByCreationTime(objects);
+    break;
+  default:
+    return;
+  }
 
-    QString output = formatOutput(groupedObjects);
-    emit dataProcessed(output);
+  QString output = formatOutput(groupedObjects);
+  emit dataProcessed(output);
 }
 
 QVector<Object> DataProcessor::readObjectsFromFile(const QString &filePath) {
-    QVector<Object> objects;
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName(filePath);
+  QVector<Object> objects;
+  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+  db.setDatabaseName(filePath);
 
-    if (!db.open()) {
-        qWarning() << "Cannot open database:" << filePath;
-        return objects;
-    }
-
-    QSqlQuery query;
-    query.exec("SELECT * FROM objects");
-
-    while (query.next()) {
-        objects.append(Object(query.value(1).toString(), query.value(2).toDouble(),
-                              query.value(3).toDouble(), query.value(4).toString(),
-                              query.value(5).toDouble()));
-    }
-
-    db.close();
+  if (!db.open()) {
+    qWarning() << "Cannot open database:" << filePath;
     return objects;
+  }
+
+  QSqlQuery query;
+  query.exec("SELECT * FROM objects");
+
+  while (query.next()) {
+    objects.append(Object(query.value(1).toString(), query.value(2).toDouble(),
+                          query.value(3).toDouble(), query.value(4).toString(),
+                          query.value(5).toDouble()));
+  }
+
+  db.close();
+  return objects;
 }
 
 QMap<QString, QVector<Object>>
@@ -110,30 +110,31 @@ DataProcessor::groupByName(const QVector<Object> &objects) {
   return nameGroups;
 }
 
-QMap<QString, QVector<Object>> DataProcessor::groupByType(const QVector<Object> &objects, int minObjectsPerGroup) {
-    QMap<QString, QVector<Object>> typeGroups;
+QMap<QString, QVector<Object>>
+DataProcessor::groupByType(const QVector<Object> &objects,
+                           int minObjectsPerGroup) {
+  QMap<QString, QVector<Object>> typeGroups;
 
-    for (const Object &obj : objects) {
-        typeGroups[obj.type].append(obj);
+  for (const Object &obj : objects) {
+    typeGroups[obj.type].append(obj);
+  }
+
+  QMap<QString, QVector<Object>> resultGroups;
+
+  for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
+    if (it.value().size() >= minObjectsPerGroup) {
+      resultGroups[it.key()] = it.value();
+    } else {
+      resultGroups["Разное"].append(it.value());
     }
+  }
 
-    QMap<QString, QVector<Object>> resultGroups;
+  for (auto &group : resultGroups) {
+    std::sort(group.begin(), group.end(),
+              [](const Object &a, const Object &b) { return a.name < b.name; });
+  }
 
-    for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
-        if (it.value().size() >= minObjectsPerGroup) {
-            resultGroups[it.key()] = it.value();
-        } else {
-            resultGroups["Разное"].append(it.value());
-        }
-    }
-
-    for (auto &group : resultGroups) {
-        std::sort(group.begin(), group.end(), [](const Object &a, const Object &b) {
-            return a.name < b.name;
-        });
-    }
-
-    return resultGroups;
+  return resultGroups;
 }
 
 QMap<QString, QVector<Object>>
@@ -194,6 +195,5 @@ void DataProcessor::saveOutputData(const QString &filePath) {
   }
 
   QTextStream out(&file);
-  out << "Output data goes here...\n";
   file.close();
 }

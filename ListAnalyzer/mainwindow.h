@@ -6,6 +6,7 @@
 #include <QMap>
 #include "object.h"
 #include "dataprocessor.h"
+#include <QTextBrowser>
 
 namespace Ui {
 class MainWindow;
@@ -25,6 +26,7 @@ private slots:
     void updateOutput(const QString &output);
 
     void on_addDataBtn_clicked();
+    void saveDataToFile(QTextBrowser *textEdit, QWidget *parent);
 
 private:
     Ui::MainWindow *ui;
