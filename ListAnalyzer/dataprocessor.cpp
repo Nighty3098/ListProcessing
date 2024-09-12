@@ -36,26 +36,42 @@ void DataProcessor::processFile(const QString &filePath, int mode) {
 }
 
 QVector<Object> DataProcessor::readObjectsFromFile(const QString &filePath) {
-  QVector<Object> objects;
-  QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-  db.setDatabaseName(filePath);
+    QVector<Object> objects;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(filePath);
 
-  if (!db.open()) {
-    qWarning() << "Cannot open database:" << filePath;
+    if (!db.open()) {
+        qWarning() << "Cannot open database:" << filePath;
+        return objects;
+    }
+
+    QSqlQuery createTableQuery;
+    createTableQuery.exec(
+        "CREATE TABLE IF NOT EXISTS objects ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "name TEXT NOT NULL, "
+        "coordinate_x REAL NOT NULL, "
+        "coordinate_y REAL NOT NULL, "
+        "object_type TEXT NOT NULL, "
+        "creation_time REAL NOT NULL"
+        ")"
+        );
+
+    QSqlQuery query;
+    if (!query.exec("SELECT * FROM objects")) {
+        qWarning() << "Failed to execute query:";
+        db.close();
+        return objects;
+    }
+
+    while (query.next()) {
+        objects.append(Object(query.value(1).toString(), query.value(2).toDouble(),
+                              query.value(3).toDouble(), query.value(4).toString(),
+                              query.value(5).toDouble()));
+    }
+
+    db.close();
     return objects;
-  }
-
-  QSqlQuery query;
-  query.exec("SELECT * FROM objects");
-
-  while (query.next()) {
-    objects.append(Object(query.value(1).toString(), query.value(2).toDouble(),
-                          query.value(3).toDouble(), query.value(4).toString(),
-                          query.value(5).toDouble()));
-  }
-
-  db.close();
-  return objects;
 }
 
 QMap<QString, QVector<Object>>
