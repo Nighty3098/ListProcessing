@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), dataProcessor(new DataProcessor(this)) {
@@ -51,7 +53,7 @@ void MainWindow::on_addDataBtn_clicked() {
         QFile file(dataPath);
 
         if (!file.open(QIODevice::Append | QIODevice::Text)) {
-            QMessageBox::warning(this, "!!!", "Файл не доступен для записи");
+            QMessageBox::warning(this, "Ошибка", "Файл не доступен для записи");
             qDebug() << "Cannot open file for writing:" << dataPath;
             return;
         }
@@ -63,9 +65,8 @@ void MainWindow::on_addDataBtn_clicked() {
             << ui->objCTData->text() << "\n";
         file.close();
 
-        QMessageBox::information(this, "!!!", "Данные записаны");
-    }
-    else {
-        QMessageBox::information(this, "!!!", "Сначала откройте файл");
+        QMessageBox::information(this, "Успех", "Данные записаны");
+    } else {
+        QMessageBox::information(this, "Ошибка", "Сначала откройте файл");
     }
 }
