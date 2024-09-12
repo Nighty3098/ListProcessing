@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS objects (
     name TEXT NOT NULL,
     coordinate_x REAL NOT NULL,
     coordinate_y REAL NOT NULL,
-    object_type TEXT NOT NULL CHECK(object_type IN ('Человек', 'Машина', 'Здание', 'Дерево')),
+    object_type TEXT NOT NULL,
     creation_time REAL NOT NULL
 )
 """
