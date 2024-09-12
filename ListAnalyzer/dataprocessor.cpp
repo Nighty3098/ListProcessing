@@ -109,30 +109,30 @@ DataProcessor::groupByName(const QVector<Object> &objects) {
   return nameGroups;
 }
 
-QMap<QString, QVector<Object>>
-DataProcessor::groupByType(const QVector<Object> &objects,
-                           int minObjectsPerGroup) {
-  QMap<QString, QVector<Object>> typeGroups;
+QMap<QString, QVector<Object>> DataProcessor::groupByType(const QVector<Object> &objects, int minObjectsPerGroup) {
+    QMap<QString, QVector<Object>> typeGroups;
 
-  for (const Object &obj : objects) {
-    typeGroups[obj.type].append(obj);
-  }
-
-  QMap<QString, QVector<Object>> resultGroups;
-  for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
-    if (it.value().size() >= minObjectsPerGroup) {
-      resultGroups[it.key()] = it.value();
-    } else {
-      resultGroups["#"].append(it.value());
+    for (const Object &obj : objects) {
+        typeGroups[obj.type].append(obj);
     }
-  }
 
-  for (auto &group : resultGroups) {
-    std::sort(group.begin(), group.end(),
-              [](const Object &a, const Object &b) { return a.name < b.name; });
-  }
+    QMap<QString, QVector<Object>> resultGroups;
 
-  return resultGroups;
+    for (auto it = typeGroups.begin(); it != typeGroups.end(); ++it) {
+        if (it.value().size() >= minObjectsPerGroup) {
+            resultGroups[it.key()] = it.value();
+        } else {
+            resultGroups["Разное"].append(it.value());
+        }
+    }
+
+    for (auto &group : resultGroups) {
+        std::sort(group.begin(), group.end(), [](const Object &a, const Object &b) {
+            return a.name < b.name;
+        });
+    }
+
+    return resultGroups;
 }
 
 QMap<QString, QVector<Object>>
