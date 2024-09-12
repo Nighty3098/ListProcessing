@@ -5,56 +5,57 @@
 #include <QRegularExpression>
 #include <QTextStream>
 #include <algorithm>
+#include <QtSql/QSqlDatabase>
+#include <QtSql/QSqlQuery>
 
 DataProcessor::DataProcessor(QObject *parent) : QObject(parent) {}
 
 void DataProcessor::processFile(const QString &filePath, int mode) {
-  QVector<Object> objects = readObjectsFromFile(filePath);
-  QMap<QString, QVector<Object>> groupedObjects;
+    QVector<Object> objects = readObjectsFromFile(filePath);
+    QMap<QString, QVector<Object>> groupedObjects;
 
-  switch (mode) {
-  case 0:
-    groupedObjects = groupByDistance(objects);
-    break;
-  case 1:
-    groupedObjects = groupByName(objects);
-    break;
-  case 2:
-    groupedObjects = groupByType(objects);
-    break;
-  case 3:
-    groupedObjects = groupByCreationTime(objects);
-    break;
-  default:
-    return;
-  }
+    switch (mode) {
+    case 0:
+        groupedObjects = groupByDistance(objects);
+        break;
+    case 1:
+        groupedObjects = groupByName(objects);
+        break;
+    case 2:
+        groupedObjects = groupByType(objects);
+        break;
+    case 3:
+        groupedObjects = groupByCreationTime(objects);
+        break;
+    default:
+        return;
+    }
 
-  QString output = formatOutput(groupedObjects);
-  emit dataProcessed(output);
+    QString output = formatOutput(groupedObjects);
+    emit dataProcessed(output);
 }
 
 QVector<Object> DataProcessor::readObjectsFromFile(const QString &filePath) {
-  QVector<Object> objects;
-  QFile file(filePath);
+    QVector<Object> objects;
+    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+    db.setDatabaseName(filePath);
 
-  if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-    qWarning() << "Cannot open file:" << filePath;
+    if (!db.open()) {
+        qWarning() << "Cannot open database:" << filePath;
+        return objects;
+    }
+
+    QSqlQuery query;
+    query.exec("SELECT * FROM objects");
+
+    while (query.next()) {
+        objects.append(Object(query.value(1).toString(), query.value(2).toDouble(),
+                              query.value(3).toDouble(), query.value(4).toString(),
+                              query.value(5).toDouble()));
+    }
+
+    db.close();
     return objects;
-  }
-
-  QTextStream in(&file);
-  while (!in.atEnd()) {
-    QString line = in.readLine();
-    QStringList parts = line.split(' ');
-
-    if (parts.size() < 5)
-      continue;
-
-    objects.append(Object(parts[0], parts[1].toDouble(), parts[2].toDouble(),
-                          parts[3], parts[4].toDouble()));
-  }
-
-  return objects;
 }
 
 QMap<QString, QVector<Object>>
