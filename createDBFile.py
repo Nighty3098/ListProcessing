@@ -44,7 +44,7 @@ def generate_random_data(num_entries):
     return data
 
 # Вставка данных в таблицу
-num_entries = 40  # Количество записей для генерации
+num_entries = 100  # Количество записей для генерации
 random_data = generate_random_data(num_entries)
 
 cursor.executemany(
