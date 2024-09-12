@@ -87,16 +87,58 @@ void MainWindow::updateOutput(const QString &output) {
   ui->outputText->setText(output);
 }
 
+bool MainWindow::validateCoordinates(const QString &objPos, double &x, double &y) {
+    QStringList posParts = objPos.split(" ");
+    if (posParts.size() != 2) {
+        showWarning("Координаты должны содержать два значения.");
+        return false;
+    }
+
+    bool xOk, yOk;
+    x = posParts[0].toDouble(&xOk);
+    y = posParts[1].toDouble(&yOk);
+    if (!xOk || !yOk) {
+        showWarning("Координаты должны быть числами.");
+        return false;
+    }
+    return true;
+}
+
+void MainWindow::showWarning(const QString &message) {
+    QMessageBox::warning(this, "Ошибка", message);
+}
+
 void MainWindow::on_addDataBtn_clicked() {
-  QString db_path = ui->filePathLbl->text();
+    QString db_path = ui->filePathLbl->text();
+    QString objName = ui->objNameData->text();
+    QString objPos = ui->objPosData->text();
+    QString objType = ui->objTypeData->text();
+    QString objCT = ui->objCTData->text();
 
-  QString objName = ui->objNameData->text();
-  QString objPos = ui->objPosData->text();
-  QString objType = ui->objTypeData->text();
-  QString objCT = ui->objCTData->text();
+    if (objName.isEmpty()) {
+        showWarning("Имя объекта не может быть пустым.");
+        return;
+    }
 
-  dataProcessor->addNewData(objName, objPos, objType, objCT, db_path);
+    double x, y;
+    if (!validateCoordinates(objPos, x, y)) {
+        return;
+    }
 
-  int mode = ui->actionBox->currentIndex();
-  dataProcessor->processFile(filePath, mode);
+    if (objType.isEmpty()) {
+        showWarning("Тип объекта не может быть пустым.");
+        return;
+    }
+
+    bool timeOk;
+    double creationTime = objCT.toDouble(&timeOk);
+    if (!timeOk) {
+        showWarning("Время создания должно быть числом.");
+        return;
+    }
+
+    dataProcessor->addNewData(objName, objPos, objType, objCT, db_path);
+
+    int mode = ui->actionBox->currentIndex();
+    dataProcessor->processFile(db_path, mode);
 }

@@ -27,6 +27,8 @@ private slots:
 
     void on_addDataBtn_clicked();
     void saveDataToFile(QTextBrowser *textEdit, QWidget *parent);
+    void showWarning(const QString &message);
+    bool validateCoordinates(const QString &objPos, double &x, double &y);
 
 private:
     Ui::MainWindow *ui;
