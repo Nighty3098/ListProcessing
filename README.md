@@ -1,6 +1,14 @@
 # ListProcessing
 ### Время на разработку: 4 часа
 
+### Зависимости
+
+```
+sudo apt install g++
+sudo apt install qt6-base-dev
+sudo apt install qtchooser
+```
+
 ### Установка
 
 ```
