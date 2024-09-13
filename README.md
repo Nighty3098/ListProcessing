@@ -8,7 +8,7 @@ git clone https://github.com/Nighty3098/ListProcessing
 cd ListProcessing
 cd ListAnalyzer
 mkdir build && cd build
-qmake ../ListAnalyzer.pro && make
+qmake6 ../ListAnalyzer.pro && make
 ```
 
 ### Запуск
