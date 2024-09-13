@@ -6,7 +6,6 @@
 ```
 git clone https://github.com/Nighty3098/ListProcessing
 cd ListProcessing
-git checkout DB_FUNC
 cd ListAnalyzer
 mkdir build && cd build
 qmake ../ListAnalyzer.pro && make
