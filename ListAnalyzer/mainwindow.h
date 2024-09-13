@@ -5,8 +5,8 @@
 #include <QVector>
 #include <QMap>
 #include "object.h"
-#include <QTextBrowser>
 #include "dataprocessor.h"
+#include <QTextBrowser>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +27,9 @@ private slots:
 
     void on_addDataBtn_clicked();
     void saveDataToFile(QTextBrowser *textEdit, QWidget *parent);
+    void showWarning(const QString &message);
+    bool validateCoordinates(const QString &objPos, double &x, double &y);
+
 private:
     Ui::MainWindow *ui;
     QString filePath;

@@ -395,10 +395,12 @@ QComboBox QListView {
             <item row="0" column="0" colspan="3">
              <widget class="QTextBrowser" name="outputText">
               <property name="styleSheet">
-               <string notr="true">background-color: #22282f;
+               <string notr="true">QTextBrowser {
+background-color: #22282f;
 color: #fff;
 border: none;
-border-radius: 15px;</string>
+border-radius: 15px;
+}</string>
               </property>
              </widget>
             </item>
@@ -495,6 +497,9 @@ border-radius: 15px;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: #22282f; border-radius: 7px;</string>
+                </property>
+                <property name="inputMask">
+                 <string/>
                 </property>
                 <property name="alignment">
                  <set>Qt::AlignmentFlag::AlignCenter</set>

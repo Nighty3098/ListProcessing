@@ -1,6 +1,7 @@
 import random
 import sqlite3
 import time
+import string
 
 # Создание или подключение к базе данных
 conn = sqlite3.connect("objects.db")
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS objects (
     name TEXT NOT NULL,
     coordinate_x REAL NOT NULL,
     coordinate_y REAL NOT NULL,
-    object_type TEXT NOT NULL CHECK(object_type IN ('Человек', 'Машина', 'Здание', 'Дерево')),
+    object_type TEXT NOT NULL,
     creation_time REAL NOT NULL
 )
 """
@@ -23,28 +24,27 @@ CREATE TABLE IF NOT EXISTS objects (
 # Возможные типы объектов
 object_types = ["Человек", "Машина", "Здание", "Дерево"]
 
-
 # Генерация случайных данных
+def generate_random_name(length=5):
+    """Генерирует случайное имя из букв заданной длины."""
+    return ''.join(random.choices(string.ascii_letters, k=length))
+
 def generate_random_data(num_entries):
-    names = ["Кривой", "Магазин", "Лада", "Дерево", "Человек", "Строение"]
     data = []
 
     for _ in range(num_entries):
-        name = random.choice(names)
+        name = generate_random_name()  # Генерация случайного имени
         coordinate_x = random.uniform(-180.0, 180.0)  # Генерация координаты X
         coordinate_y = random.uniform(-90.0, 90.0)  # Генерация координаты Y
         object_type = random.choice(object_types)
-        creation_time = time.time() + random.uniform(
-            -1000000, 1000000
-        )  # Генерация времени создания
+        creation_time = time.time() + random.uniform(-1000000, 1000000)  # Генерация времени создания
 
         data.append((name, coordinate_x, coordinate_y, object_type, creation_time))
 
     return data
 
-
 # Вставка данных в таблицу
-num_entries = 1000  # Количество записей для генерации
+num_entries = 100  # Количество записей для генерации
 random_data = generate_random_data(num_entries)
 
 cursor.executemany(

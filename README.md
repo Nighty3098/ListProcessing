@@ -1,13 +1,15 @@
 # ListProcessing
-### Время на разработку: 2 часа
+### Время на разработку: 4 часа
 
 ### Установка
 
 ```
 git clone https://github.com/Nighty3098/ListProcessing
+cd ListProcessing
+git checkout DB_FUNC
 cd ListAnalyzer
 mkdir build && cd build
-cmake .. && make
+qmake ../ListAnalyzer.pro && make
 ```
 
 ### Запуск
@@ -16,6 +18,12 @@ cmake .. && make
 ./ListAnalyzer
 ```
 
-![Снимок экрана от 2024-09-11 16-53-55](https://github.com/user-attachments/assets/c7f4bcb7-8b6d-458e-aa3b-39bb1be5448b)
-![Снимок экрана от 2024-09-11 16-53-52](https://github.com/user-attachments/assets/5f33f2e1-fa96-4f22-aed2-cb1a78f5ba6b)
-![Снимок экрана от 2024-09-11 16-53-48](https://github.com/user-attachments/assets/28e52868-0636-49fe-86d9-1529f10c04c8)
+### Добавление новых записей в БД:
+
+Поле `координаты`: позиция_по_x позиция_по_y
+
+Поле `время создания`: дата в формате Unix timestamp
+
+![Снимок экрана от 2024-09-12 21-00-31](https://github.com/user-attachments/assets/4b88722e-4e1b-4080-baa7-ce8af77e8bd6)
+![Снимок экрана от 2024-09-12 21-00-37](https://github.com/user-attachments/assets/df4ec577-ba94-4b84-8390-2153b7d63a5d)
+![Снимок экрана от 2024-09-12 21-00-40](https://github.com/user-attachments/assets/4207fdfb-4c12-4c25-95c7-ec4bcee46769)
